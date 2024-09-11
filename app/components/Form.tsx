@@ -36,7 +36,6 @@ export default function Form() {
   const [formData, setFormData] = useState<Inputs>();
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
-  const [_, setIsSubmitted] = useState(false); // New state for submission status
   const delta = currentStep - previousStep;
 
   const {
@@ -52,7 +51,6 @@ export default function Form() {
   const processForm: SubmitHandler<Inputs> = (data) => {
     setFormData(data);
     reset();
-    setIsSubmitted(true); // Set submission status to true
     setCurrentStep(steps.length - 1);
   };
 
@@ -80,7 +78,6 @@ export default function Form() {
     if (currentStep > 0) {
       setPreviousStep(currentStep);
       setCurrentStep((step) => step - 1);
-      setIsSubmitted(false);
     }
   };
 
