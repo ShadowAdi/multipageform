@@ -7,7 +7,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormDataSchema } from "@/lib/Types";
-import { h1 } from "framer-motion/client";
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -37,13 +36,12 @@ export default function Form() {
   const [formData, setFormData] = useState<Inputs>();
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
-  const [isSubmitted, setIsSubmitted] = useState(false); // New state for submission status
+  const [_, setIsSubmitted] = useState(false); // New state for submission status
   const delta = currentStep - previousStep;
 
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     trigger,
     formState: { errors },
@@ -554,6 +552,7 @@ export default function Form() {
             </svg>
           </button>
           <button
+          
             type="button"
             onClick={next}
             disabled={currentStep === steps.length - 1}
